@@ -7,14 +7,14 @@
       @select="handleSelect"
       active-text-color="#000000"
     >
-      <el-menu-item class="home" index="/home">首页</el-menu-item>
+      <el-menu-item class="home" index="/home"><i class="icon el-icon-s-home"></i>首页</el-menu-item>
       <el-submenu index="2" class="industry">
-        <template slot="title">行业</template>
+        <template slot="title"><i class="icon el-icon-s-data"></i>行业</template>
         <el-menu-item v-for="(industry, index) in industries" :key="index" class="industry-item" :index="'/industry/'+industry.id">
-          {{industry.name}}
+          <i class="icon el-icon-s-data"></i>{{industry.name}}
         </el-menu-item>
       </el-submenu>
-      <el-menu-item class="predict" index="/predict">预测</el-menu-item>
+      <el-menu-item class="predict" index="/predict"><i class="icon el-icon-s-marketing"></i>预测</el-menu-item>
     </el-menu>
     <div class="searchWrap">
       <el-input
@@ -79,12 +79,21 @@
   .topBar .el-menu-item.home{
     margin-left: 35%;
     width: 10%;
+    font-size: 16px;
   }
   .industry{
     width: 10%;
   }
+  .industry .el-submenu__title{
+    font-size: 16px;
+  }
   .el-menu-item.predict{
     width: 10%;
+    font-size: 16px;
+  }
+  .icon{
+    font-size: 14px;
+    margin-right: 4px;
   }
   .searchWrap{
     position: absolute;
