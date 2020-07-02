@@ -9,7 +9,9 @@
       </el-row>
       <el-row>
         <el-col :span="16" :offset="4">
-          <el-button class="industryButton" v-for="(industry, index) in industries" :key="index" @click="goIndustry(industry)">{{industry}}</el-button>
+          <el-button class="industryButton" v-for="(industry, index) in industries" :key="index" @click="goIndustry(industry)">
+            {{industry}}
+          </el-button>
         </el-col>
       </el-row>
     </div>
@@ -35,7 +37,7 @@
                   <td class="clickable" @click="goStock(stock.sid)">{{stock.code}}</td>
                   <td class="clickable" @click="goStock(stock.sid)">{{stock.name}}</td>
                   <td class="clickable" @click="goIndustry(stock.industry)">{{stock.industry}}</td>
-                  <td>{{stock.yoy}}</td>
+                  <td>{{stock.yoy + '🔥'}}</td>
                 </tr>
               </tbody>
             </table>
@@ -131,6 +133,7 @@ export default {
 <style scoped>
   .home{
     text-align: left;
+    margin-bottom: 60px;
   }
   .industryWrap{
     margin-top: 20px;
