@@ -4,6 +4,7 @@ import Home from '../views/Home'
 import Industry from '../views/Industry'
 import Stock from '../views/Stock'
 import Predict from '../views/Predict'
+import Test from "../views/Test";
 
 Vue.use(VueRouter)
 
@@ -47,7 +48,16 @@ Vue.use(VueRouter)
           meta: {
               title: '预测'
           }
-      }]
+      },
+      {
+          path: '/test',
+          name: 'Test',
+          component: Test,
+          meta: {
+              title: '测试'
+          }
+      },
+  ]
 
 const router = new VueRouter({
   mode: 'history',
