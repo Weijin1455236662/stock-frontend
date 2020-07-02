@@ -26,7 +26,7 @@ Vue.use(VueRouter)
           }
       },
       {
-          path: '/industry/:id',
+          path: '/industry/:name',
           name: 'Industry',
           component: Industry,
           meta: {

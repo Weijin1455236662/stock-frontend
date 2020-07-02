@@ -8,10 +8,10 @@
       active-text-color="#000000"
     >
       <el-menu-item class="home" index="/home"><i class="icon el-icon-s-home"></i>首页</el-menu-item>
-      <el-submenu index="2" class="industry">
+      <el-submenu index="2" class="industry" :popper-append-to-body="true">
         <template slot="title"><i class="icon el-icon-s-data"></i>行业</template>
-        <el-menu-item v-for="(industry, index) in industries" :key="index" class="industry-item" :index="'/industry/'+industry.id">
-          <i class="icon el-icon-s-data"></i>{{industry.name}}
+        <el-menu-item v-for="(industry, index) in industries" :key="index" class="industry-item" :index="'/industry/'+industry">
+          <i class="icon el-icon-s-data"></i>{{industry}}
         </el-menu-item>
       </el-submenu>
       <el-menu-item class="predict" index="/predict"><i class="icon el-icon-s-marketing"></i>预测</el-menu-item>
@@ -37,13 +37,7 @@
         data(){
             return{
                 activeIndex: '1',
-                industries: [{
-                    id: 1,
-                    name: '银行'
-                }, {
-                    id: 2,
-                    name: '飞机'
-                }],
+                industries: ['采掘','传媒','电气设备','电子','房地产','纺织服装','非银金融','钢铁','公用事业','国防军工','化工','机械设备','计算机','家用电器','建筑材料','建筑装饰','交通运输','农林牧渔','汽车','轻工制造','商业贸易','食品饮料','通信','休闲服务','医药生物','银行','有色金属'],
                 searchContent: ''
             }
         },
@@ -57,10 +51,10 @@
         },
         methods: {
             handleSelect(key, keyPath) {
-                // window.location.href = keyPath[keyPath.length - 1];
-                this.$router.push(keyPath[keyPath.length - 1]).catch(err =>{
-                    console.log(err);
-                });
+                window.location.href = keyPath[keyPath.length - 1];
+                // this.$router.push(keyPath[keyPath.length - 1]).catch(err =>{
+                //     console.log(err);
+                // });
             },
             handleCN: function () {
                 console.log('我捕获了');
@@ -123,5 +117,11 @@
     color: #ffffff;
     background-color: #000000;
     border: 1px solid #000000;
+  }
+  .el-menu--horizontal .el-menu .el-menu-item, .el-menu--horizontal .el-menu .el-submenu__title{
+    height: 24px !important;
+  }
+  .el-menu--popup{
+    padding: 0 0 6px!important;
   }
 </style>
