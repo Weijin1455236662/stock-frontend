@@ -94,8 +94,9 @@
     top: 10px;
     right: 2%;
     display: flex;
-    border: 1px solid #DCDFE6;
+    border: 1px solid #000000;
     border-radius: 4px;
+    width: 20%;
   }
   .search .el-input__inner{
     border: 0;
