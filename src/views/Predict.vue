@@ -189,6 +189,7 @@
                 this.canCommit = commitAble;
             },
             commit: function () {
+                this.showResult = false;
                 this.commitAble();
                 this.validateCode();
                 if(this.canCommit){
