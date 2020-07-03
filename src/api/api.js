@@ -29,3 +29,8 @@ export const getStock = (sid) => {
 export const predict = (data) => {
     return axios.post('/predict', data).then(res => res.data);
 };
+
+//个股成交量曲线
+export const getTransaction = (sid) => {
+    return axios.get('/transaction?sid=' + sid).then(res => res.data);
+};

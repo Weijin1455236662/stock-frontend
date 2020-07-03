@@ -5,7 +5,7 @@
 <script>
     import echarts from 'echarts'
     export default {
-        name: "RelationGraph",
+        name: "KLine",
         props:{
             chartData:{
                 type:Array,

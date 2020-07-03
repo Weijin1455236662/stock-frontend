@@ -24,15 +24,15 @@
                 </tr>
                 <tr>
                     <td>净利润同比增长率</td>
-                    <td v-for="singleReport in reports" :key="singleReport.date">{{singleReport.YOYNI}}</td>
+                    <td v-for="singleReport in reports" :key="singleReport.date">{{singleReport.yoyni}}</td>
                 </tr>
                 <tr>
                     <td>净利润环比增长率</td>
-                    <td v-for="singleReport in reports" :key="singleReport.date">{{singleReport.LRRNI}}</td>
+                    <td v-for="singleReport in reports" :key="singleReport.date">{{singleReport.lrrni}}</td>
                 </tr>
                 <tr>
                     <td>基本每股收益同比增长率</td>
-                    <td v-for="singleReport in reports" :key="singleReport.date">{{singleReport.YOYEPSBasic}}</td>
+                    <td v-for="singleReport in reports" :key="singleReport.date">{{singleReport.yoyepsbasic}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -43,52 +43,14 @@
 <script>
     export default {
         name: "QuarterlyReport",
+        props:{
+            reports: {
+                type:Array,
+                default:()=>[]
+            }
+        },
         data(){
             return{
-                reports:[//按日期从新到旧(降序)
-                    {
-                        date:"2020-03-32",
-                        netProfit:"1111.12",//净利润
-                        epsTTM:"123.12",//每股收益
-                        totalShare:"123.12",//总股本
-                        YOYNI:"12.3%",//净利润同比增长率
-                        LRRNI:"12.3%",//净利润环比增长率
-                        YOYEPSBasic:"12.3%"//基本每股收益同比增长率
-                    },{
-                        date:"2020-03-31",
-                        netProfit:"1111.12",//净利润
-                        epsTTM:"123.12",//每股收益
-                        totalShare:"123.12",//总股本
-                        YOYNI:"12.3%",//净利润同比增长率
-                        LRRNI:"12.3%",//净利润环比增长率
-                        YOYEPSBasic:"12.3%"//基本每股收益同比增长率
-                    },{
-                        date:"2020-03-30",
-                        netProfit:"1111.12",//净利润
-                        epsTTM:"123.12",//每股收益
-                        totalShare:"123.12",//总股本
-                        YOYNI:"12.3%",//净利润同比增长率
-                        LRRNI:"12.3%",//净利润环比增长率
-                        YOYEPSBasic:"12.3%"//基本每股收益同比增长率
-                    },{
-                        date:"2020-03-29",
-                        netProfit:"1111.12",//净利润
-                        epsTTM:"123.12",//每股收益
-                        totalShare:"123.12",//总股本
-                        YOYNI:"12.3%",//净利润同比增长率
-                        LRRNI:"12.3%",//净利润环比增长率
-                        YOYEPSBasic:"12.3%"//基本每股收益同比增长率
-                    },{
-                        date:"2020-03-28",
-                        netProfit:"1111.12",//净利润
-                        epsTTM:"123.12",//每股收益
-                        totalShare:"123.12",//总股本
-                        YOYNI:"12.3%",//净利润同比增长率
-                        LRRNI:"12.3%",//净利润环比增长率
-                        YOYEPSBasic:"12.3%"//基本每股收益同比增长率
-                    }
-                ],
-
             }
         }
     }

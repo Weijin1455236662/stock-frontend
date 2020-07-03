@@ -1,17 +1,17 @@
 <template>
     <div>
         <p>测试页面</p>
-        <KLine></KLine>
+        <Transaction></Transaction>
         <QuarterlyReport></QuarterlyReport>
     </div>
 </template>
 
 <script>
-    import KLine from "../components/KLine";
     import QuarterlyReport from "../components/QuarterlyReport";
+    import Transaction from "../components/Transaction";
     export default {
         name: "Test",
-        components:{KLine,QuarterlyReport}
+        components:{QuarterlyReport,Transaction}
     }
 </script>
 

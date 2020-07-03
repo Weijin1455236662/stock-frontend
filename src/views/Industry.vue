@@ -92,7 +92,8 @@
                         dailyk: []
                     },
                     stocks:[]
-                }
+                },
+              isGet:false
             }
         },
         mounted() {

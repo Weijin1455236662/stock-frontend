@@ -295,4 +295,7 @@
     color: #409eff;
     text-decoration: underline;
   }
+  .horizontal{
+    text-align: center;
+  }
 </style>
