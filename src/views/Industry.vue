@@ -43,7 +43,7 @@
             </el-col>
             <el-col :span="16" :offset="2">
               <span>股票名称: </span>
-              <strong>{{content.dominateStock.name}}</strong>
+              <strong>{{changeName(content.dominateStock.name)}}</strong>
             </el-col>
             <el-col class="dailyK" :span="24">
               <span>日k变化: </span>
@@ -121,6 +121,9 @@
                     }
                 });
                 return code;
+            },
+            changeName: function (name) {
+                return name.split('(')[0];
             }
         }
     }
