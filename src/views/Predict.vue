@@ -33,6 +33,8 @@
               class="input"
               size="medium"
               type="number"
+              max="4"
+              min="1"
               placeholder="请输入季度"
               v-model="quarter">
           </el-input>
@@ -100,6 +102,8 @@
 </template>
 
 <script>
+    import {search, predict} from "../api/api";
+
     export default {
         name: "Predict",
         data(){
@@ -123,22 +127,34 @@
         },
         methods: {
             validateCode: function () {
-                // 验证股票代码是否可用
-                return true;
+                search(this.code).then(res=>{
+                    if(res.content.sid > 0){
+                        this.codeError = '';
+                    }else{
+                        this.codeError = '股票代码不属于沪深300股！';
+                        this.canCommit = false;
+                    }
+                })
             },
             commitAble: function () {
                 let commitAble = true;
-                if(this.code === '' || !this.validateCode()){
+                if(this.code === ''){
                     commitAble = commitAble && false;
-                    this.codeError = '股票代码不属于沪深300股！';
-                }else {
+                    this.codeError = '请输入股票代码！';
+                } else if(this.code.length !== 6){
+                    commitAble = commitAble && false;
+                    this.codeError = '股票代码长度应该为6位！';
+                } else {
                     commitAble = commitAble && true;
                     this.codeError = '';
                 }
                 if(this.quarter === ''){
                     commitAble = commitAble && false;
                     this.quarterError = '请输入季度！';
-                }else {
+                } else if(this.quarter < 1 || this.quarter > 4){
+                    commitAble = commitAble && false;
+                    this.quarterError = '季度应在1-4之间！';
+                } else {
                     commitAble = commitAble && true;
                     this.quarterError = '';
                 }
@@ -173,7 +189,8 @@
                 this.canCommit = commitAble;
             },
             commit: function () {
-                this.commitAble()
+                this.commitAble();
+                this.validateCode();
                 if(this.canCommit){
                     let data = {
                         code: this.code,
@@ -183,9 +200,12 @@
                         eps: this.eps,
                         totalShare: this.totalShare
                     }
-                    console.log(data);
-                    this.analysis = '预测是不可能预测的，这辈子都不可能预测的。'
-                    this.showResult = true;
+                    predict(data).then(res=>{
+                        if (res.success){
+                            this.analysis = res.content.analysis;
+                            this.showResult = true;
+                        }
+                    })
                 }
             },
             date2String: function (date) {

@@ -35,7 +35,7 @@
                 <tr v-for="(stock, index) in stockList" :key="index">
                   <td>{{index + 1}}</td>
                   <td class="clickable" @click="goStock(stock.sid)">{{stock.code}}</td>
-                  <td class="clickable" @click="goStock(stock.sid)">{{stock.name}}</td>
+                  <td class="clickable" @click="goStock(stock.sid)">{{changeName(stock.name)}}</td>
                   <td class="clickable" @click="goIndustry(stock.industry)">{{stock.industry}}</td>
                   <td>{{stock.yoy + '🔥'}}</td>
                 </tr>
@@ -49,7 +49,9 @@
 
 <script>
 
-export default {
+    import {getRankList} from "../api/api";
+
+    export default {
     name: 'Home',
     data(){
         return{
@@ -119,12 +121,27 @@ export default {
             ]
         }
     },
+    mounted() {
+        getRankList().then(res=>{
+            if(res.success){
+                this.stockList = res.content.stockList;
+            }else{
+                this.$message({
+                    message: '服务器错误，请稍后再试！',
+                    type: 'error'
+                });
+            }
+        })
+    },
     methods:{
         goIndustry: function (name) {
             window.location.href = '/industry/' + name;
         },
         goStock: function(sid){
             window.location.href = '/stock/' + sid;
+        },
+        changeName: function (name) {
+            return name.split('(')[0];
         }
     }
 }

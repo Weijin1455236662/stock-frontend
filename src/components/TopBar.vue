@@ -20,7 +20,7 @@
       <el-input
         class="search"
         v-model="searchContent"
-        placeholder="输入要搜索的代码..."
+        placeholder="输入要搜索的数字代码..."
         @keydown.13.native="search"
         @keydown.229="handleCN">
       </el-input>
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+    import {search} from "../api/api";
+
     export default {
         name: "TopBar",
         data(){
@@ -60,7 +62,24 @@
                 console.log('我捕获了');
             },
             search: function(){
-                alert('想搜' + this.searchContent + '? 能搜到有鬼。');
+                let number = /^[0-9]+$/
+                if(this.searchContent==='' || !number.test(this.searchContent)){
+                    this.$message({
+                        message: '请输入正确的股票代码！',
+                        type: 'error'
+                    })
+                }else{
+                    search(this.searchContent).then(res=>{
+                        if(res.content.sid > 0){
+                            window.location.href = '/stock/' + res.content.sid;
+                        }else{
+                            this.$message({
+                                message: '股票代码不属于沪深300股！',
+                                type: 'error'
+                            })
+                        }
+                    })
+                }
             }
         }
     }

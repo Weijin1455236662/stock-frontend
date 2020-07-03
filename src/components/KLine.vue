@@ -1,5 +1,5 @@
 <template>
-    <div class="echartLayout" id="container" style="width: 1000px;height: 400px;"></div>
+    <div class="echartLayout" id="container" style="width: 100%;height: 400px;"></div>
 </template>
 
 <script>
@@ -18,8 +18,14 @@
             }
         },
         mounted() {
-            this.initEchart()
-
+            console.log(this.chartData);
+            this.initEchart();
+        },
+        watch: {
+            chartData: function () {
+                console.log(this.chartData);
+                this.initEchart();
+            }
         },
         methods: {
             calculateMA(dayCount, data) {
