@@ -48,10 +48,10 @@
             <el-col class="dailyK" :span="24">
               <span>日k变化: </span>
             </el-col>
-            <el-col :span="24">
-              <RelationGraph :chart-data="content.dominateStock.dailyK"></RelationGraph>
-            </el-col>
           </el-row>
+        </el-col>
+        <el-col :span="16" :offset="4">
+          <RelationGraph :chart-data="content.dominateStock.dailyk"></RelationGraph>
         </el-col>
       </el-row>
     </div>
@@ -100,7 +100,6 @@
             getIndustry(this.name).then(res=>{
                 if(res.success){
                     this.content = res.content;
-                    console.log(res.content.dominateStock.dailyk);
                 }else{
                     this.$message({
                         message: '服务器错误，请稍后再试！',

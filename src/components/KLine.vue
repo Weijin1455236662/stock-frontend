@@ -18,12 +18,10 @@
             }
         },
         mounted() {
-            console.log(this.chartData);
             this.initEchart();
         },
         watch: {
             chartData: function () {
-                console.log(this.chartData);
                 this.initEchart();
             }
         },
